@@ -103,8 +103,6 @@ FILESYSTEM_REGISTER(chvidmem)
     malloc(luaL_checkinteger(L, 1));
     return FS_OK;
 }
-
-
 FILESYSTEM_REGISTER(freemem)
 {
     free((void*) luaL_checkinteger(L, 1));
@@ -112,8 +110,31 @@ FILESYSTEM_REGISTER(freemem)
 }
 // Register all of the filesystem functions
 FILESYSTEM_REGISTER(luaopen_filesystem) {
+
     LUAL_REG("fssettype", set_fstype);
+
+    LUAL_REG("free", freemem);
+
+    LUAL_REG("malloc", chvidmem);
+
+    LUAL_REG("evstr", Estring);
+
+    LUAL_REG("chexec", CIter);
+
+    LUAL_REG("checkvalue", checkvalue);
+
+    LUAL_REG("checksum", checksum);
+
+    LUAL_REG("getchar", getchar_p);
+
+    LUAL_REG("readline", readline_p);
+
+    LUAL_REG("ferr",seterr);
+
+    LUAL_REG("fsgettype", get_fstype);
+
     return FS_OK;
+
 }
 
 #endif
