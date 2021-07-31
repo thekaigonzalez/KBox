@@ -22,13 +22,13 @@ This program is free software: you can redistribute it and/or modify
 
 #define LUAL_REG(xxx, xxc) lua_register(L, xxx, xxc)
 
-#include <lua5.3/lualib.h>
-#include <lua5.3/lauxlib.h>
-#include <lua5.3/lua.h>
-
+#include <lua5.4/lualib.h>
+#include <lua5.4/lauxlib.h>
+#include <lua5.4/lua.h>
+#include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <malloc.h>
+#include <malloc/malloc.h>
 
 const char *fSTyPE = "drive";
 #define FS_OK 0x0001
@@ -100,7 +100,8 @@ FILESYSTEM_REGISTER(Estring)
 
 FILESYSTEM_REGISTER(chvidmem)
 {
-    malloc(luaL_checkinteger(L, 1));
+    char* bf = malloc(luaL_checkinteger(L, 1));
+    lua_pushstring(L, bf);
     return FS_OK;
 }
 FILESYSTEM_REGISTER(freemem)
