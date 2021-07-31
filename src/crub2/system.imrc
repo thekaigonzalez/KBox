@@ -1,0 +1,18 @@
+local system_bmgr = {}
+
+function system_bmgr:kmain()
+    print("CRUB2 - Boot Manager\n\n")
+    print("1 | crub2 Boot manager")
+    print("2 | Default System")
+    local c = io.read("n")
+    if c == 1 then
+        local lb = require('deps.loadbinary')
+
+
+        local gdsp = lb("./system/boot/initrd")
+
+        gdsp()
+    end
+end
+
+return system_bmgr

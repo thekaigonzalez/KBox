@@ -14,9 +14,10 @@ build-directories:
 	mkdir system/boot
 
 
-system-boot:
+system-boot: crub2
 	mkdir system/boot
 
+crub2-setup: crub2 crub2-files
 
 build-deps: all
 	tar -xf ./libs.tar.gz
@@ -39,7 +40,7 @@ build-deps: all
 	rm ./symlib.so
 
 
-bios:
+bios: lua-binary
 	gcc src/BIOS.c -lncurses -lcurses -llua5.4 -lreadline -fPIC -shared -o deps/libbioshandlers.so
 
 
@@ -58,6 +59,10 @@ crub2-files:
 
 initg-swap:
 	luac -o ./system/boot/initg ./src/crub2/system.imrc
-testsystem-build:
-	luac -o ./system/KEFI/testsystem/boot.dsi ./
-setup: crub2-mkdir crub2 build-directories build-deps system-boot lua-binary bios
+bootmgr-build-dirs:
+	mkdir ./system/KEFI/Bootmanager
+bootmgr-build:
+	luac -o ./system/KEFI/Bootmanager/boot.dsi ./src/crub2/system.imrc
+bootmgr-setup: bootmgr-build
+
+setup: crub2-mkdir crub2 build-directories build-deps system-boot lua-binary bios crub2-files bootmgr-build bootmgr-build-dirs

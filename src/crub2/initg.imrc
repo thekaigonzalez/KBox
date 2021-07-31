@@ -1,4 +1,6 @@
 local lb = require('deps.loadbinary')
 
 
-local gdsp = lb("./system/boot/initg.kefi")
+local gdsp = lb("./system/KEFI/Bootmanager/boot.dsi")
+
+gdsp:kmain()
