@@ -1,4 +1,5 @@
 local dep = require('src.dependent')
+local lb = require('deps.loadbinary')
 
 dep("filesystem")
 
@@ -46,11 +47,12 @@ AllowUniversalLua()
 --MAIN
 return function ()
     kprint(0, "CRUB");
-    kprint(1, "Minimal FreeKSD-Like editing is supported. On clicking ^[[a (Up arrow), will show the previous command history.")
+    kprint(0, "Minimal FreeKSD-Like editing is supported. On clicking ^[[a (Up arrow), will show the previous command history.")
     kprint(0, "Command Histories are only saved for the current session, not saved to a file.\n\n")
     while (true) do
         local jhs = readline("crub1.0.120> ")
         local cargv = OneTimeSplit(jhs)
-
+        local ffl = lb("./src/crub2/images/" .. cargv[0] .. ".dimg")
+        ffl:main(cargv);
     end
 end

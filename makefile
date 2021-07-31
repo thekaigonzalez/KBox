@@ -40,8 +40,10 @@ bios:
 lua-binary: crub2
 	luac -o system/boot/crub2 src/crub2/fsc.main
 	luac -o system/boot/initrd src/crub2/initrd.imrc
-crub2:
+crub2: crub2-files
 	gcc ./src/crub.c -llua5.4 -o ./crub
 crub2-mkdir: crub2
 	mkdir system/crub
+crub2-files:
+	luac -o ./src/crub2/images/clear.dimg ./src/crub2/text/clear.lua
 setup: crub2-mkdir crub2 build-directories build-deps system-boot lua-binary bios
