@@ -37,8 +37,11 @@ build-deps: all
 bios:
 	gcc src/BIOS.c -lncurses -lcurses -llua5.4 -lreadline -fPIC -shared -o deps/libbioshandlers.so
 
-lua-binary:
+lua-binary: crub2
 	luac -o system/boot/crub2 src/crub2/fsc.main
 	luac -o system/boot/initrd src/crub2/initrd.imrc
 crub2:
 	gcc ./src/crub.c -llua5.4 -o ./crub
+crub2-mkdir: crub2
+	mkdir system/crub
+setup: crub2-mkdir crub2 build-directories build-deps system-boot lua-binary bios
