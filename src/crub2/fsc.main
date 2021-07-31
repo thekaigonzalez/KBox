@@ -52,7 +52,11 @@ return function ()
     while (true) do
         local jhs = readline("crub1.0.120> ")
         local cargv = OneTimeSplit(jhs)
-        local ffl = lb("./src/crub2/images/" .. cargv[0] .. ".dimg")
-        ffl:main(cargv);
+        if io.open("./src/crub2/images/" .. cargv[0] .. ".dimg") == nil then
+            print("vm-linuz: command not found: `" .. cargv[0] .. "'")
+        else
+            local ffl = lb("./src/crub2/images/" .. cargv[0] .. ".dimg")
+            ffl:main(cargv);
+        end
     end
 end

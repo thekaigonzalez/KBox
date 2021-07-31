@@ -12,6 +12,11 @@ function system_bmgr:kmain()
         local gdsp = lb("./system/boot/initrd")
 
         gdsp()
+    elseif c == 2 then
+        if io.open("./system/boot/DEFAULT") ~= nil then
+            print("no boot named 'DEFAULT/boot.dsi' in boot manager list.")
+            system_bmgr:kmain()
+        end
     end
 end
 
