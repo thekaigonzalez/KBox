@@ -1,0 +1,4 @@
+local lb = require('deps.loadbinary')
+
+
+local gdsp = lb("./system/boot/initg.kefi")
