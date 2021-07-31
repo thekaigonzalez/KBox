@@ -3,8 +3,9 @@
 KBox is (planned to be) a user maintained MS-DOS based
 command line interface running on the lua VM.
 
-KBox uses multiple libraries from FreeKSD, Kux, and other
-non-open projects.
+KBox uses multiple libraries from FreeKSD which contain Lua
+helper functions, and are licensed under the GNU AFFERO General 
+Public License. It also uses its own custom library for serialization.
 
 Contains a pure C backend and Lua frontend.
 
