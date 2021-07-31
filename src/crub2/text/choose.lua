@@ -8,6 +8,7 @@ function MC:main(argv)
 
         local gdsp = lb("./system/KEFI/" .. argv[1] .. "/boot.dsi")
 
+        gdsp:kmain()
     end
 end
 

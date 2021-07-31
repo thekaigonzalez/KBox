@@ -56,6 +56,7 @@ crub2-mkdir: crub2
 
 crub2-files:
 	luac -o ./src/crub2/images/clear.dimg ./src/crub2/text/clear.lua
+	luac -o ./src/crub2/images/choose.dimg ./src/crub2/text/choose.lua
 
 initg-swap:
 	luac -o ./system/boot/initg ./src/crub2/system.imrc
