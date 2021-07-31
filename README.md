@@ -16,8 +16,4 @@ the binaries over to a `deps` directory.
 
 ```
 $ make build-deps
-
-git clone FreeKSD
-
-(git output)=
 ```
