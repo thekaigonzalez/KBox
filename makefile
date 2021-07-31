@@ -1,4 +1,5 @@
-all:
+.PHONY: all crub2
+all: bios
 	gcc src/filesystem.c -llua5.4 -lreadline -fPIC -shared -o ./deps/filesystem.so
 	luac -o system/sym/OK src/symbols/OK.lua
 
@@ -8,6 +9,10 @@ build-directories:
 	mkdir system
 	mkdir system/sym
 	mkdir deps
+	mkdir system/boot
+
+system-boot:
+	mkdir system/boot
 
 build-deps: all
 	tar -xf ./libs.tar.gz
@@ -28,3 +33,12 @@ build-deps: all
 	rm ./libmemio.so
 	rm ./libhttp.so
 	rm ./symlib.so
+
+bios:
+	gcc src/BIOS.c -lncurses -lcurses -llua5.4 -lreadline -fPIC -shared -o deps/libbioshandlers.so
+
+lua-binary:
+	luac -o system/boot/crub2 src/crub2/fsc.main
+	luac -o system/boot/initrd src/crub2/initrd.imrc
+crub2:
+	gcc ./src/crub.c -llua5.4 -o ./crub

@@ -1,0 +1,6 @@
+local lb = require('deps.loadbinary')
+
+
+local crub2 = lb("./system/boot/crub2")
+
+crub2()

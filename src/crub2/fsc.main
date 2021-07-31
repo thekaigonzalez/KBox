@@ -1,0 +1,27 @@
+local dep = require('src.dependent')
+
+dep("filesystem")
+
+-- Handle MemPrint
+function kprint(ln, __s)
+    if ln == nil or type(ln) ~= "number" then return nil end
+    if __s == nil then do return end end
+    local ns = ""
+
+    for i = 0, ln do
+        ns = ns .. "\n"
+    end
+    ns = ns .. __s
+    MemPrint(rawlen(__s), ns)
+end
+dep("libmemio")
+AllowUniversalLua()
+--MAIN
+return function ()
+    kprint(0, "CRUB");
+    kprint(2, "Minimal FreeKSD-Like editing is supported. On clicking ^[[a (Up arrow), will show the previous command history.")
+    kprint(3, "Command Histories are only saved for the current session, not saved to a file.\n\n")
+    while (true) do
+        local jhs = readline("crub> ")
+    end
+end
