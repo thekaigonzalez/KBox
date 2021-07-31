@@ -1,27 +1,56 @@
 local dep = require('src.dependent')
-local findfunction = require('src.function')
+
 dep("filesystem")
 
+
+function split(s, delimiter)
+    result = {};
+    for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+        table.insert(result, match);
+    end
+    return result;
+end
+
+
+function OneTimeSplit(string)
+    local tblt = {}
+    local lns = split(string, " ")
+    i = 0
+    -- works!
+
+    for _,V in ipairs(lns) do
+        tblt[i] = V;
+        i = i + 1
+    end
+    return tblt
+end
+
+
+local vidmem = 0
 -- Handle MemPrint
 function kprint(ln, __s)
+
     if ln == nil or type(ln) ~= "number" then return nil end
     if __s == nil then do return end end
     local ns = ""
-
-    for i = 0, ln do
+    vidmem = vidmem + ln
+    for i = 0, vidmem do
         ns = ns .. "\n"
     end
     ns = ns .. __s
     MemPrint(rawlen(__s), ns)
+
 end
 dep("libmemio")
 AllowUniversalLua()
 --MAIN
 return function ()
     kprint(0, "CRUB");
-    kprint(2, "Minimal FreeKSD-Like editing is supported. On clicking ^[[a (Up arrow), will show the previous command history.")
-    kprint(3, "Command Histories are only saved for the current session, not saved to a file.\n\n")
+    kprint(1, "Minimal FreeKSD-Like editing is supported. On clicking ^[[a (Up arrow), will show the previous command history.")
+    kprint(0, "Command Histories are only saved for the current session, not saved to a file.\n\n")
     while (true) do
-        local jhs = readline("crub> ")
+        local jhs = readline("crub1.0.120> ")
+        local cargv = OneTimeSplit(jhs)
+
     end
 end
