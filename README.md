@@ -1,5 +1,9 @@
 # KBox
 
+
+(REPLACED BY THE CRAPTITUDE PROJECT, UP IN CASE I WANT TO COME BACK TO THIS)
+
+
 KBox is a user maintained MS-DOS based
 command line interface running on the lua VM.
 
